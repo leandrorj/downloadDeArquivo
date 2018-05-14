@@ -1,18 +1,25 @@
 package download_srf8_sbl63;
 
+import java.io.IOException;
+
+
+
 import org.jsoup.Jsoup;
-import org.w3c.dom.Document;
+import org.jsoup.select.Elements;
+import org.jsoup.nodes.Document;
 
 
 public class TestHtmlParse
 {
-	Document doc = Jsoup.connect("http://en.wikipedia.org/").get();
-	log(doc.title());
-	Elements newsHeadlines = doc.select("#mp-itn b a");
-	for (Element headline : newsHeadlines) {
-	  log("%s\n\t%s", 
-	    headline.attr("title"), headline.absUrl("href"));
+	public static void main(String[] args) {
+		try {
+			Document doc = Jsoup.connect("http://www.google.com.br").get();
+			Elements primeira_tag = doc.getElementsByTag("span").toggleClass("gb_ka gb_M gb_ka").html("Brasil");
+			
+			
+			System.out.println(primeira_tag);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
 	}
-   
-   
 }
